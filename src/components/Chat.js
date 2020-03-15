@@ -36,7 +36,8 @@ class Chat extends React.Component{
                                     <br/>
                                     <input type="text" placeholder="Message" className="form-control" value={this.state.message} onChange={ev => this.setState({message: ev.target.value})}/>
                                     <br/>
-                                    <button className="btn btn-primary form-control">Send</button>
+                                    <button onClick={this.sendMessage} className="btn btn-primary form-control">Send</button>
+
                                 </div>
                             </div>
                         </div>
