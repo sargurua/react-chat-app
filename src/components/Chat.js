@@ -12,15 +12,19 @@ class Chat extends React.Component{
         };
 
         this.socket = io('localhost:8080');
-    }
 
-    sendMessage = ev => {
-        ev.preventDefault();
-        this.socket.emit('SEND_MESSAGE', {
-            author: this.state.username,
-            message: this.state.message
+        this.socket.on('RECEIVE_MESSAGE', function(data){
+            addMessage(data);
         });
-        this.setState({message: ''});
+
+        this.sendMessage = ev => {
+            ev.preventDefault();
+            this.socket.emit('SEND_MESSAGE', {
+                author: this.state.username,
+                message: this.state.message
+            });
+            this.setState({message: ''});
+        }
     }
 
     render(){
